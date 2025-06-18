@@ -14,9 +14,20 @@ Blob::Blob(std::string &file)
     std::string read_data = decompressFile(file);
     size_t x = read_data.find('\0');
     size = std::stoi(data.substr(5, data.length() - x));
-    data = read_data.substr(x+1);
+    data = read_data.substr(x + 1);
 }
 
-void Blob::printData(){
+void Blob::printData()
+{
     std::cout << data;
+}
+
+std::string Blob::getData()
+{
+    return data;
+}
+
+size_t Blob::getSize()
+{
+    return size;
 }

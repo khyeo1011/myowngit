@@ -2,8 +2,9 @@
 #define _BLOB_H
 
 #include "utils.h"
+#include "gitobject.h"
 
-class Blob
+class Blob : public GitObject
 {
 private:
     /* data */
@@ -15,6 +16,8 @@ public:
     Blob(std::string& file); //Creates blob based on file.
     ~Blob();
     void printData(); //Prints data of the blob.
+    std::string getData(); //Returns data stored in blob.
+    size_t getSize();
 };
 
 

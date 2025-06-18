@@ -3,6 +3,9 @@
 std::string decompressFile(std::string &file){
     // Read file;
     std::fstream input(file, std::ios::binary);
+    if(!input.is_open()){
+        throw new std::ios_base::failure("Could not open file : " + file);
+    }
     input.seekg(0, std::ios::end);
     size_t input_size = input.tellg();
     input.seekg(0, std::ios::beg);
