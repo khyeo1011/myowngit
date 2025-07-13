@@ -1,4 +1,3 @@
-
 enable_testing()
 
 include(FetchContent)
@@ -12,8 +11,5 @@ FetchContent_MakeAvailable(googletest)
 
 
 
-target_link_libraries(testblob PRIVATE gitlib gtest_main)
-
 
 include(GoogleTest)
-
