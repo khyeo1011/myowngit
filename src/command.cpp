@@ -45,7 +45,7 @@ int parseCommand(int argc, char *argv[])
     {
         std::string arg{argv[2]};
         std::string hash{argv[3]};
-        std::string objectFilePath = ".git/objects" + hash.substr(0, 2) + "/" + hash.substr(2) + "\0";
+        std::string objectFilePath = ".git/objects/" + hash.substr(0, 2) + "/" + hash.substr(2);
 
         Blob blob(objectFilePath);
         if (arg == "-p")

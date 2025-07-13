@@ -1,18 +1,19 @@
 #include "utils.h"
 
-std::string decompressFile(std::string &file){
+std::string decompressFile(std::string &file)
+{
     // Read file;
     std::fstream input(file, std::ios::binary);
-    if(!input.is_open()){
-        throw new std::ios_base::failure("Could not open file : " + file);
+    if (!input.is_open())
+    {
+        throw std::ios_base::failure("Could not open file : " + file);
     }
     input.seekg(0, std::ios::end);
     size_t input_size = input.tellg();
     input.seekg(0, std::ios::beg);
     std::vector<unsigned char> compressed_data(input_size);
-    input.read(reinterpret_cast<char*>(compressed_data.data()), input_size);
+    input.read(reinterpret_cast<char *>(compressed_data.data()), input_size);
     input.close();
-
 
     z_stream stream;
     stream.zalloc = Z_NULL;
@@ -24,19 +25,20 @@ std::string decompressFile(std::string &file){
 
     if (ret != Z_OK)
     {
-        std::cerr << "inflateInit failed: " << ret << std::endl;
-        abort();
+        throw std::runtime_error("inflateInit failed: " + std::to_string(ret));
     }
 
     std::vector<char> decompressedData;
     char buffer[4096];
 
-    do {
+    do
+    {
         stream.avail_out = sizeof(buffer);
-        stream.next_out = reinterpret_cast<Bytef*>(buffer);
+        stream.next_out = reinterpret_cast<Bytef *>(buffer);
         ret = inflate(&stream, Z_NO_FLUSH);
 
-        if (ret != Z_OK) {
+        if (ret != Z_OK)
+        {
             std::cerr << "Error during zlib inflate: " << ret << std::endl;
             inflateEnd(&stream);
             abort();
@@ -49,7 +51,8 @@ std::string decompressFile(std::string &file){
 
     std::string read_data(decompressedData.begin(), decompressedData.end());
     size_t x = read_data.find('\0');
-    if(x == read_data.length() || x == 5){
+    if (x == read_data.length() || x == 5)
+    {
         std::cerr << "not a git file" << std::endl;
         abort();
     }

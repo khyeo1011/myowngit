@@ -11,8 +11,8 @@ add_library(gitlib STATIC ${SOURCE_FILES})
 
 target_link_libraries(git PRIVATE OpenSSL::Crypto)
 target_link_libraries(git PRIVATE ZLIB::ZLIB)
-target_link_libraries(gitlib STATIC OpenSSL::Crypto)
-target_link_libraries(gitlib STATIC ZLIB::ZLIB)
+target_link_libraries(gitlib PUBLIC OpenSSL::Crypto)
+target_link_libraries(gitlib PUBLIC ZLIB::ZLIB)
 
 # Set the include directories for OpenSSL and ZLIB
 target_include_directories(git PRIVATE ${OPENSSL_INCLUDE_DIR})
