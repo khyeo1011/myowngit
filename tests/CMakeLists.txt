@@ -10,7 +10,6 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 
-add_executable(testblob testblob.cpp)
 
 
 target_link_libraries(testblob PRIVATE gitlib gtest_main)
@@ -18,5 +17,3 @@ target_link_libraries(testblob PRIVATE gitlib gtest_main)
 
 include(GoogleTest)
 
-gtest_discover_tests(testblob WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
-gtest_discover_tests(testblob)

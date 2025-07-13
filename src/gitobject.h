@@ -1,16 +1,10 @@
-#ifndef _GIT_OBJECT_H
-#define _GIT_OBJECT_H
+#ifndef GITOBJECT
+#define GITOBJECT
 
-class GitObject
-{
-private:
-    /* data */
+class GitObject {
 public:
-    GitObject(/* args */);
-    ~GitObject();
-};
-
-
-
+    
+private:
+}
 
 #endif
